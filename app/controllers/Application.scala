@@ -1,6 +1,8 @@
 package controllers
 
-import play.api._
+import models.Task
+import play.api.data._
+import play.api.data.Forms._
 import play.api.mvc._
 
 object Application extends Controller {
@@ -9,7 +11,11 @@ object Application extends Controller {
     Redirect(routes.Application.tasks())
   }
 
-  def tasks = TODO
+  def tasks = Action {
+    Ok(views.html.index(Task.all(), taskForm))
+  }
+
+  val taskForm = Form("label" -> nonEmptyText)
 
   def newTask = TODO
 
