@@ -11,7 +11,7 @@ object Application extends Controller {
     Redirect(routes.Application.tasks())
   }
 
-  val taskForm = Form("label" -> nonEmptyText)
+  val taskForm = Form("Label" -> nonEmptyText)
 
   def tasks = Action {
     Ok(views.html.index(Task.all(), taskForm))
