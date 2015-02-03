@@ -1,19 +1,20 @@
 @(tasks: List[Task], taskForm: Form[String])
 
 @import helper._
+@implicitField = @{ FieldConstructor(horizontalFormTB.render) }
 
 @main("SmartTodo") {
 
     <div class="bs-docs-header" style="padding-bottom: 50px">
-        <div class="container-fluid">
-            <h1 style="text-align: center">Smart Todo</h1>
+        <div class="container-fluid" style="background-color: black">
+            <h1 style="text-align: center; color: white">Smart Todo</h1>
         </div>
         <ol class="list-group">
         @tasks.map { task =>
             <li class="list-group-item">
-                @task.label
                 @form(routes.Application.deleteTask(task.id)) {
-                    <button class="btn btn-xs btn-danger" type="submit">Delete</button>
+                    @task.label
+                    <button class="btn btn-xs btn-danger pull-right" type="submit">Delete</button>
                 }
             </li>
         }
@@ -22,7 +23,7 @@
 
     <h4>Add a new task</h4>
     @form(routes.Application.newTask(), 'class -> "form-horizontal") {
-        @inputText(taskForm("Label"), 'class -> "form-control")
+        @inputText(taskForm("Label"), 'placeholder -> "Label")
         <button class="btn btn-sm btn-primary" type="submit">Create</button>
     }
 }
