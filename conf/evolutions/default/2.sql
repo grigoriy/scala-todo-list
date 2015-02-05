@@ -6,7 +6,7 @@ alter table task
 add column userId varchar(64);
 
 update task
-set userId = id;
+set userId = '885910';
 
 alter table task
 alter userId set not null;
