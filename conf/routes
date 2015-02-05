@@ -3,12 +3,16 @@
 # ~~~~
 
 # Home page
-GET        /                    controllers.Application.index
+GET         /                            @controllers.Application.index
 
 # Tasks
-GET     /tasks                  controllers.Application.tasks
-POST    /tasks                  controllers.Application.newTask
-POST    /tasks/:id/delete       controllers.Application.deleteTask(id: Long)
+GET         /tasks                       @controllers.Application.tasks()
+POST        /tasks                       @controllers.Application.newTask()
+POST        /tasks/:taskId/delete        @controllers.Application.deleteTask(taskId: Long)
+
+GET         /custom/login                @controllers.CustomLoginController.login
+GET         /custom/logout               @controllers.CustomLoginController.logout
+->          /auth                        securesocial.Routes
 
 # Map static resources from the /public folder to the /assets URL path
-GET        /assets/*file        controllers.Assets.at(path="/public", file)
+GET         /assets/*file                controllers.Assets.at(path="/public", file)
