@@ -18,7 +18,7 @@ object Task {
   def create(userId: String, label: String): Unit = {
     DB.withConnection { implicit c =>
       SQL("insert into task (userId, label)" +
-        " values ({userId, label})").on(
+        " values ({userId}, {label})").on(
           'userId -> label,
           'label -> label
         ).executeUpdate()
