@@ -1,7 +1,7 @@
 import controllers.CustomRoutesService
 import java.lang.reflect.Constructor
 import securesocial.core.RuntimeEnvironment
-import securesocial.core.providers.{GoogleProvider, VkProvider}
+import securesocial.core.providers.VkProvider
 import service.{ DemoUser, MyEventListener, InMemoryUserService }
 
 import scala.collection.immutable.ListMap
@@ -16,11 +16,9 @@ object Global extends play.api.GlobalSettings {
     override lazy val userService: InMemoryUserService = new InMemoryUserService()
     override lazy val eventListeners = List(new MyEventListener())
     override lazy val providers = ListMap(
-      include(new VkProvider(routes, cacheService, oauth2ClientFor(VkProvider.Vk))),
-      include(new GoogleProvider(routes, cacheService, oauth2ClientFor(GoogleProvider.Google)))
+      include(new VkProvider(routes, cacheService, oauth2ClientFor(VkProvider.Vk)))
     )
   }
-
   /**
    * An implementation that checks if the controller expects a RuntimeEnvironment and
    * passes the instance to it if required.
